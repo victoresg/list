@@ -70,8 +70,8 @@ export default {
     async salvar () {
       if (!this.produtos.id) {
         try {
-          Produtos.salvar(this.produto)
-          await this.getAllProducts()
+          await Produtos.salvar(this.produto)
+          this.getAllProducts()
           this.produto = {}
           alert('salvou')
         } catch(error){
@@ -79,8 +79,8 @@ export default {
         }
       } else {
         try {
-          Produtos.atualizar(this.produto)
-          await this.getAllProducts()
+          await Produtos.atualizar(this.produto)
+          this.getAllProducts()
           this.produto = {}
           alert('atualizou')
         } catch(error){
@@ -89,12 +89,12 @@ export default {
       }
     },
     editar (produto) {
-        this.produto = produto
+      this.produto = produto
     },
     async deletar (produto) {
       try {
-        await this.getAllProducts()
-        Produtos.deletar(produto)
+        await Produtos.deletar(produto)
+        this.getAllProducts()
         alert('deletou')
       } catch(error){
         console.log(error)
